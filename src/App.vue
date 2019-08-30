@@ -3,17 +3,17 @@
     <div v-if="isClick">
       <div class="header">
           <div class="header__left">
-            <span id="text">멘토 찾기</span>
+            <span id="text">다이렉트 메세지</span>
             <span id="text">맞춤형 Q&A</span>
           </div>
           <div class="header__center">
             <!--<span id="logo">수시레시피</span>-->
-            <img src="./assets/logo_sim.png" class="header__logo">
+            <img src="./assets/logo_sim.png" class="header__logo" @click="$router.push({ name: 'main' })">
           </div>
           <div class="header__right">
             <!--<span id="text">테스트용</span>-->
             <img src="./assets/search_icon.png" class="header__searchicon" v-on:click="isClick=0">
-            <span id="text">로그인/회원가입</span>
+            <span id="text" @click="$router.push({ name: 'login' })">로그인/회원가입</span>
           </div>
       </div>
     </div>
