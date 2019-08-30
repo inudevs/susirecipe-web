@@ -37,12 +37,21 @@ export default {
 }
 </script>
 
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+</style>
+
 <style lang="scss" scoped>
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 .header{
   margin: 0 auto;
-  width: 70%;
-  height: 50px;
+  width: 65%;
+  height: 60px;
   display: flex;
   &__left {
     width: 40%;
@@ -69,7 +78,7 @@ export default {
   }
 
   &__logo {
-    height: 80%;
+    height: 60%;
 
     &:hover {
     cursor: pointer;
@@ -88,7 +97,7 @@ export default {
 
 .searchbar {
   margin: 0 auto;
-  width: 70%;
+  width: 65%;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -97,12 +106,12 @@ export default {
   &__delete {
     height: 35%;
     margin-left: 1em;
-    
+
     &:hover {
       cursor: pointer;
     }
   }
-  
+
   &__input {
     width: 100%;
     height: 60%;

@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const Main = () => import(/* webpackChunkName: "about" */ './pages/main.vue')
+const Test = () => import('./pages/test.vue')
 
 export default new Router({
   mode: 'history',
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'main',
       component: Main
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
     }
   ]
 })
