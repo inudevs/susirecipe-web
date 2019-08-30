@@ -1,9 +1,11 @@
 <template>
 <div>
   <div class="banner">
-    <div class="banner__desc">
-        <h1 class="banner__title">숭실대학교</h1>
-        <span>ddddddddddd</span>
+    <div class="banner__content">
+        <div class="banner__desc">
+            <h1 class="banner__title">숭실대학교</h1>
+            <span>ddddddddddd</span>
+        </div>
     </div>
   </div>
 </div>
@@ -29,6 +31,14 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+      width: 65%;
+      height: 100%;
+  }
 
   &__desc {
       position: absolute;
@@ -40,6 +50,7 @@ export default {
 
   &__title {
       margin: 0;
+      font-size: 3.3rem;
   }
 }
 </style>
