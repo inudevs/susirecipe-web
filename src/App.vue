@@ -1,29 +1,133 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div v-if="isClick">
+      <div class="header">
+          <div class="header__left">
+            <span id="text">멘토 찾기</span>
+            <span id="text">맞춤형 Q&A</span>
+          </div>
+          <div class="header__center">
+            <!--<span id="logo">수시레시피</span>-->
+            <img src="./assets/logo_sim.png" class="header__logo">
+          </div>
+          <div class="header__right">
+            <!--<span id="text">테스트용</span>-->
+            <img src="./assets/search_icon.png" class="header__searchicon" v-on:click="isClick=0">
+            <span id="text">로그인/회원가입</span>
+          </div>
+      </div>
     </div>
-    <router-view/>
+    <div v-else>
+      <div class="searchbar">
+        <input type="text" placeholder="찾으시는 정보가 있나요?" class="searchbar__input">
+        <img src="./assets/deletebutton.png" class="searchbar__delete" v-on:click="isClick=1">
+      </div>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data () {
+    return {
+      isClick: 1
     }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+.header{
+  margin: 0 auto;
+  width: 70%;
+  height: 50px;
+  display: flex;
+  &__left {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__center {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__right {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__logo {
+    height: 80%;
+
+    &:hover {
+    cursor: pointer;
+  }
+  }
+
+  &__searchicon {
+    height: 40%;
+    padding-right: 10px;
+
+    &:hover {
+    cursor: pointer;
+    }
+  }
+}
+
+.searchbar {
+  margin: 0 auto;
+  width: 70%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__delete {
+    height: 35%;
+    margin-left: 1em;
+    
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  &__input {
+    width: 100%;
+    height: 60%;
+    background-color: rgb(238, 238, 238);
+    border-radius: 0.4em;
+    border: 0.1em solid white;
+    padding-left: 0.8em;
+    padding-top: 0.3em;
+    outline-style: none;
+    font-family: 'NanumSquare', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+}
+
+#text {
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+    color: rgb(38, 131, 193);
   }
 }
 </style>
