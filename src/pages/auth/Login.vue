@@ -6,19 +6,26 @@
   <div class="loginform">
     <input type="text" placeholder="아이디를 입력하세요" class="loginform__textinput" v-model="id">
     <input type="password" placeholder="비밀번호를 입력하세요" class="loginform__textinput" v-model="pw">
-    <button class="loginform__button">로그인</button>
+    <button class="loginform__button"
+      @click="login({email: id, password: pw})">
+      로그인
+    </button>
     <span class="loginform__create" @click="$router.push({ name : 'createaccount'})">수시레시피 가입하기</span>
   </div>
 </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
       id: '',
       pw: ''
     }
+  },
+  methods: {
+    ...mapActions(['login'])
   }
 }
 </script>

@@ -13,7 +13,8 @@
           <div class="header__right">
             <!--<span id="text">테스트용</span>-->
             <img src="./assets/search_icon.png" class="header__searchicon" v-on:click="isClick=0">
-            <span id="text" @click="$router.push({ name: 'login' })">로그인/회원가입</span>
+            <span v-if="isLogin == false" id="text" @click="$router.push({ name: 'login' })">로그인/회원가입</span>
+            <span v-else id="text">{{userName}}</span>
           </div>
       </div>
     </div>
@@ -28,11 +29,16 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
       isClick: 1
     }
+  },
+  computed: {
+    ...mapState(['isLogin', 'userName'])
   }
 }
 </script>
