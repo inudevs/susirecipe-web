@@ -41,6 +41,7 @@ export default new Vuex.Store({
           router.push({ name: 'main' })
         })
         .catch(error => {
+          console.error(error)
           console.log('로그인 실패')
           commit('loginError')
           alert('로그인 에러')

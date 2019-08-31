@@ -55,49 +55,50 @@ export default {
       </div>
     </div>-->
     <Carousel />
-    <div class="topbar">
-      <span class="topbar__title">최근 수시관련 뉴스</span>
-      <span class="topbar__more">더보기</span>
-    </div>
-    <div class="news">
-      <div
-        class="news__box"
-        v-for="(banner, key) in news"
-        :key="key"
-        @click="onClickLink(banner.link)"
-      >
-        <div class="news__newscut">
-          <img :src="banner.cover" class="news__img" />
-          <div class="news__content">
-            <span id="title">{{banner.title}}</span>
-            <span id="desc">{{banner.desc + '...'}}</span>
-          </div>
-        </div>
-      </div>
-      <br />
-      <!--NOTE
-      -->
+    <div class="section">
       <div class="topbar">
-        <span class="topbar__title">합격한 선배들이 읽었던 책</span>
+        <span class="topbar__title">최근 수시관련 뉴스</span>
         <span class="topbar__more">더보기</span>
       </div>
       <div class="news">
         <div
           class="news__box"
-          v-for="(banner, key) in books.slice(0,6)"
+          v-for="(banner, key) in news"
           :key="key"
           @click="onClickLink(banner.link)"
         >
-          <div class="news__bookcut">
+          <div class="news__newscut">
             <img :src="banner.cover" class="news__img" />
+            <div class="news__content">
+              <span class="news__title">{{banner.title}}</span>
+              <span class="news__desc">{{banner.desc + '...'}}</span>
+            </div>
           </div>
-          <span id="title">{{banner.title}}</span>
-          <br />
-          <span id="desc">{{banner.author}}</span>
-          <br />
+        </div>
+        <br />
+      </div>
+    </div>
+    <div class="section">
+      <div class="topbar">
+        <span class="topbar__title">합격한 선배들이 읽었던 책</span>
+        <span class="topbar__more">더보기</span>
+      </div>
+      <div class="book">
+        <div
+          class="book__box"
+          v-for="(book, key) in books.slice(0, 6)"
+          :key="key"
+          @click="onClickLink(book.link)"
+        >
+          <div class="book__wrap">
+            <img :src="book.cover" class="book__img" />
+            <div class="book__content">
+              <span class="book__title">{{book.title}}</span>
+              <span class="book__author">{{book.author}}</span>
+            </div>
+          </div>
         </div>
       </div>
-      <br />
     </div>
   </div>
 </template>
@@ -105,24 +106,14 @@ export default {
 <style lang="scss" scoped>
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
-#title {
-  margin-top: 1em;
-  font-family: "NanumSquare", monospace;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-#desc {
-  font-family: "NanumSquare", sans-serif;
-  font-size: 0.9rem;
-  color: gray;
-  padding-top: 0.5rem;
+.section {
+  display: flex;
+  flex-direction: column;
 }
 
 .news {
   width: 65%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -142,19 +133,21 @@ export default {
 
   &__newscut {
     width: 100%;
-    height: 8em;
+    // height: 8em;
     overflow: hidden;
   }
 
   &__bookcut {
     width: 100%;
-    height: 13em;
+    // height: 13em;
     overflow: hidden;
   }
 
   &__img {
     width: 100%;
-    height: auto;
+    // height: auto;
+    height: 8rem;
+    object-fit: cover;
   }
 
   &__content {
@@ -162,6 +155,20 @@ export default {
     flex-direction: column;
     padding: 0.2rem 0.5rem;
     padding-bottom: 0.5rem;
+  }
+
+  &__title {
+    margin-top: 0.2rem;
+    font-family: "NanumSquare", monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  &__desc {
+    font-family: "NanumSquare", sans-serif;
+    font-size: 0.9rem;
+    color: gray;
+    padding-top: 0.5rem;
   }
 }
 
@@ -217,6 +224,51 @@ export default {
   &__title {
     margin: 0;
     font-size: 3.3rem;
+  }
+}
+
+.book {
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  margin: auto;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+
+  &__box {
+    width: 8rem;
+    border: 0;
+    box-shadow: 0px 1px 1px rgb(196, 196, 196);
+
+    &:hover {
+      box-shadow: 0px 2px 10px rgb(169, 187, 236);
+      cursor: pointer;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 12rem;
+    box-shadow: 15px 19px 32px -18px rgba(21, 19, 19, .07);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.3rem;
+  }
+
+  &__title {
+    margin-top: 0.2rem;
+    font-family: "NanumSquare", monospace;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &__author {
+    font-family: "NanumSquare", sans-serif;
+    font-size: 0.7rem;
+    color: gray;
   }
 }
 </style>
