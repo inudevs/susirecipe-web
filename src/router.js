@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const Main = () => import(/* webpackChunkName: "about" */ './pages/Main.vue')
+const Main = () => import(/* webpackChunkName: "about" */ './pages/main.vue')
 const Test = () => import('./pages/Test.vue')
 const Login = () => import('./pages/auth/Login.vue')
 const CreateAccount = () => import('./pages/auth/CreateAccount.vue')
