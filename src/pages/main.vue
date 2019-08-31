@@ -1,59 +1,62 @@
 <template>
-<div>
-  <div class="banner">
-    <div class="banner__content">
+  <div>
+    <div class="banner">
+      <div class="banner__content">
         <div class="banner__desc">
-            <h1 class="banner__title">숭실대학교</h1>
-            <span>ddddddddddd</span>
+          <h1 class="banner__title">숭실대학교</h1>
+          <span>D-10</span>
         </div>
+      </div>
     </div>
+    <div class="topbar">
+      <span class="topbar__title">최근 수시관련 뉴스</span>
+      <span class="topbar__more">더보기</span>
+    </div>
+    <div class="news">
+      <div class="news__box" @click="onClickLink(news.data.news[0].link)">
+        <img :src="news.data.news[0].cover" class="news__img" />
+        <span id="title">{{news.data.news[0].title}}</span>
+        <br />
+        <span id="desc">{{news.data.news[0].desc}}</span>
+        <br />
+      </div>
+      <div class="news__box" @click="onClickLink(news.data.news[1].link)">
+        <img :src="news.data.news[1].cover" class="news__img" />
+        <span id="title">{{news.data.news[1].title}}</span>
+        <br />
+        <span id="desc">{{news.data.news[1].desc}}</span>
+        <br />
+      </div>
+      <div class="news__box" @click="onClickLink(news.data.news[2].link)">
+        <img :src="news.data.news[2].cover" class="news__img" />
+        <span id="title">{{news.data.news[2].title}}</span>
+        <br />
+        <span id="desc">{{news.data.news[2].desc}}</span>
+        <br />
+      </div>
+      <div class="news__box" @click="onClickLink(news.data.news[3].link)">
+        <img :src="news.data.news[3].cover" class="news__img" />
+        <span id="title">{{news.data.news[3].title}}</span>
+        <br />
+        <span id="desc">{{news.data.news[3].desc}}</span>
+        <br />
+      </div>
+    </div>
+    <br />
   </div>
-  <div class="topbar">
-    <span class="topbar__title">최근 수시관련 뉴스</span>
-    <span class="topbar__more">더보기</span>
-  </div>
-  <div class="news">
-    <div class="news__box"
-    @click="onClickLink(news.data.news[0].link)">
-      <img :src="news.data.news[0].cover" class="news__img">
-      <span id="title">{{news.data.news[0].title}}</span><br>
-      <span id="desc">{{news.data.news[0].desc}}</span><br>
-    </div>
-    <div class="news__box"
-    @click="onClickLink(news.data.news[1].link)">
-      <img :src="news.data.news[1].cover" class="news__img">
-      <span id="title">{{news.data.news[1].title}}</span><br>
-      <span id="desc">{{news.data.news[1].desc}}</span><br>
-    </div>
-    <div class="news__box"
-    @click="onClickLink(news.data.news[2].link)">
-      <img :src="news.data.news[2].cover" class="news__img">
-      <span id="title">{{news.data.news[2].title}}</span><br>
-      <span id="desc">{{news.data.news[2].desc}}</span><br>
-    </div>
-    <div class="news__box"
-    @click="onClickLink(news.data.news[3].link)">
-      <img :src="news.data.news[3].cover" class="news__img">
-      <span id="title">{{news.data.news[3].title}}</span><br>
-      <span id="desc">{{news.data.news[3].desc}}</span><br>
-    </div>
-  </div>
-  <br>
-  sadlsdjl
-</div>
 </template>
 
 <style lang="scss" scoped>
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
 #title {
-  font-family: 'NanumSquare',monospace;
-  font-size: 1.5em;
+  font-family: "NanumSquare", monospace;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 #desc {
-  font-family: 'NanumSquare',sans-serif;
+  font-family: "NanumSquare", sans-serif;
   color: gray;
 }
 
@@ -67,9 +70,10 @@
 
   &__box {
     width: 24%;
-    height: 20em;
+    // height: 20em;
     border: 0;
     box-shadow: 0px 1px 1px rgb(196, 196, 196);
+
     &:hover {
       box-shadow: 0px 2px 10px rgb(169, 187, 236);
       cursor: pointer;
@@ -77,7 +81,8 @@
   }
 
   &__img {
-    max-height: 9em;
+    // max-height: 9em;
+    height: 9rem;
     width: 100%;
   }
 }
@@ -86,31 +91,30 @@
   width: 65%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2em;
-  margin-bottom: 0.3em;
+  margin-top: 2rem;
+  margin-bottom: 0.3rem;
   display: flex;
   justify-content: space-between;
 
   &__title {
-    font-family: 'NanumSquare', sans-serif;
+    font-family: "NanumSquare", sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 
   &__more {
-    padding-top: 0.5em;
+    padding-top: 0.5rem;
     cursor: pointer;
-    font-family: 'NanumSquare', sans-serif;
+    font-family: "NanumSquare", sans-serif;
     font-weight: 600;
     color: rgb(153, 153, 153);
   }
-
 }
 
 .banner {
   width: 100%;
   height: 27rem;
-  background-image: url('./../assets/test4.jpg');
+  background-image: url("./../assets/test4.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -119,21 +123,21 @@
   align-items: center;
 
   &__content {
-      width: 65%;
-      height: 100%;
+    width: 65%;
+    height: 100%;
   }
 
   &__desc {
-      position: absolute;
-      bottom: 0;
-      color: white;
-      display: flex;
-      flex-direction: column;
+    position: absolute;
+    bottom: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
   }
 
   &__title {
-      margin: 0;
-      font-size: 3.3rem;
+    margin: 0;
+    font-size: 3.3rem;
   }
 }
 </style>
