@@ -7,7 +7,8 @@ export default {
   data () {
     return {
       slide_one: 152,
-      news: []
+      news: [],
+      books: []
     }
   },
   created () {
@@ -20,6 +21,16 @@ export default {
       .catch(error => {
         console.error(error)
         console.log('뉴스 로딩 실패')
+      }),
+    axios
+      .get('http://susirecipe.cf/service/books')
+      .then(response => {
+        console.log(response)
+        this.books = response.data.books
+      })
+      .catch(error => {
+        console.error(error)
+        console.log('추천도서 로딩 실패')
       })
   },
   methods: {
@@ -41,6 +52,8 @@ export default {
         </div>
       </div>
     </div>
+    <!--NOTE
+    -->
     <div class="topbar">
       <span class="topbar__title">최근 수시관련 뉴스</span>
       <span class="topbar__more">더보기</span>
@@ -52,10 +65,35 @@ export default {
         :key="key"
         @click="onClickLink(banner.link)"
       >
+        <div class="news__newscut">
         <img :src="banner.cover" class="news__img" />
+        </div>
         <span id="title">{{banner.title}}</span>
         <br />
         <span id="desc">{{banner.desc}}</span>
+        <br />
+      </div>
+    </div>
+    <br />
+    <!--NOTE
+    -->
+    <div class="topbar">
+      <span class="topbar__title">합격한 선배들이 읽었던 책</span>
+      <span class="topbar__more">더보기</span>
+    </div>
+    <div class="news">
+      <div
+        class="news__box"
+        v-for="(banner, key) in books.slice(0,6)"
+        :key="key"
+        @click="onClickLink(banner.link)"
+      >
+        <div class="news__bookcut">
+          <img :src="banner.cover" class="news__img" />
+        </div>
+        <span id="title">{{banner.title}}</span>
+        <br />
+        <span id="desc">{{banner.author}}</span>
         <br />
       </div>
     </div>
@@ -67,14 +105,17 @@ export default {
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
 #title {
+  margin-top: 1em;
   font-family: "NanumSquare", monospace;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
 #desc {
   font-family: "NanumSquare", sans-serif;
+  font-size: 0.9rem;
   color: gray;
+  padding-top: 0.5rem;
 }
 
 .news {
@@ -90,17 +131,29 @@ export default {
     // height: 20em;
     border: 0;
     box-shadow: 0px 1px 1px rgb(196, 196, 196);
-
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     &:hover {
       box-shadow: 0px 2px 10px rgb(169, 187, 236);
       cursor: pointer;
     }
   }
 
-  &__img {
-    // max-height: 9em;
-    height: 9rem;
+  &__newscut {
     width: 100%;
+    height: 8em;
+    overflow: hidden;
+  }
+
+  &__bookcut {
+    width: 100%;
+    height: 13em;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -108,19 +161,20 @@ export default {
   width: 65%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 0.3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &__title {
     font-family: "NanumSquare", sans-serif;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2em;
   }
 
   &__more {
-    padding-top: 0.5rem;
+    padding-top: 0.4em;
     cursor: pointer;
     font-family: "NanumSquare", sans-serif;
     font-weight: 600;
