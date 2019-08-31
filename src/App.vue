@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <div v-if="isClick">
       <div class="header">
           <div class="header__left">
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style>
-html, body {
+html, body, #app {
   margin: 0;
   padding: 0;
   height: 100%;
