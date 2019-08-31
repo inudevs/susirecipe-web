@@ -1,3 +1,36 @@
+<script>
+// import { mapState, mapActions } from 'vuex'
+// import { setTimeout } from 'timers'
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      slide_one: 152,
+      news: []
+    }
+  },
+  created () {
+    axios // FIXME 서버통신
+      .get('http://susirecipe.cf/service/news')
+      .then(response => {
+        console.log(response)
+        this.news = response.data.news
+      })
+      .catch(error => {
+        console.error(error)
+        console.log('뉴스 로딩 실패')
+      })
+  },
+  methods: {
+    onClickLink (link) {
+      const win = window.open(link)
+      win.focus()
+    }
+  }
+}
+</script>
+
 <template>
   <div>
     <div class="banner">
@@ -13,32 +46,16 @@
       <span class="topbar__more">더보기</span>
     </div>
     <div class="news">
-      <div class="news__box" @click="onClickLink(news.data.news[0].link)">
-        <img :src="news.data.news[0].cover" class="news__img" />
-        <span id="title">{{news.data.news[0].title}}</span>
+      <div
+        class="news__box"
+        v-for="(banner, key) in news"
+        :key="key"
+        @click="onClickLink(banner.link)"
+      >
+        <img :src="banner.cover" class="news__img" />
+        <span id="title">{{banner.title}}</span>
         <br />
-        <span id="desc">{{news.data.news[0].desc}}</span>
-        <br />
-      </div>
-      <div class="news__box" @click="onClickLink(news.data.news[1].link)">
-        <img :src="news.data.news[1].cover" class="news__img" />
-        <span id="title">{{news.data.news[1].title}}</span>
-        <br />
-        <span id="desc">{{news.data.news[1].desc}}</span>
-        <br />
-      </div>
-      <div class="news__box" @click="onClickLink(news.data.news[2].link)">
-        <img :src="news.data.news[2].cover" class="news__img" />
-        <span id="title">{{news.data.news[2].title}}</span>
-        <br />
-        <span id="desc">{{news.data.news[2].desc}}</span>
-        <br />
-      </div>
-      <div class="news__box" @click="onClickLink(news.data.news[3].link)">
-        <img :src="news.data.news[3].cover" class="news__img" />
-        <span id="title">{{news.data.news[3].title}}</span>
-        <br />
-        <span id="desc">{{news.data.news[3].desc}}</span>
+        <span id="desc">{{banner.desc}}</span>
         <br />
       </div>
     </div>
@@ -141,36 +158,3 @@
   }
 }
 </style>
-
-<script>
-// import { mapState, mapActions } from 'vuex'
-// import { setTimeout } from 'timers'
-import axios from 'axios'
-
-export default {
-  data () {
-    return {
-      slide_one: 152,
-      news: null
-    }
-  },
-  created () {
-    axios // FIXME 서버통신
-      .get('http://susirecipe.cf/service/news')
-      .then(response => {
-        console.log(response)
-        this.news = response
-      })
-      .catch(error => {
-        console.error(error)
-        console.log('뉴스 로딩 실패')
-      })
-  },
-  methods: {
-    onClickLink (link) {
-      const win = window.open(link)
-      win.focus()
-    }
-  }
-}
-</script>
