@@ -236,7 +236,7 @@ export default {
   padding-bottom: 2rem;
 
   &__box {
-    width: 8rem;
+    width: 15%;
     border: 0;
     box-shadow: 0px 1px 1px rgb(196, 196, 196);
 
@@ -249,6 +249,7 @@ export default {
   &__img {
     width: 100%;
     height: 12rem;
+    object-fit: cover;
     box-shadow: 15px 19px 32px -18px rgba(21, 19, 19, .07);
   }
 
