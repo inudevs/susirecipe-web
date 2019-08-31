@@ -1,18 +1,20 @@
 <script>
 // import { mapState, mapActions } from 'vuex'
 // import { setTimeout } from 'timers'
-import axios from 'axios'
+import Carousel from '../components/Carousel.vue'
 
 export default {
   data () {
     return {
-      slide_one: 152,
       news: []
     }
   },
+  components: {
+    Carousel
+  },
   created () {
-    axios // FIXME 서버통신
-      .get('http://susirecipe.cf/service/news')
+    this.$api
+      .get('/service/news')
       .then(response => {
         console.log(response)
         this.news = response.data.news
@@ -33,14 +35,15 @@ export default {
 
 <template>
   <div>
-    <div class="banner">
+    <!-- <div class="banner">
       <div class="banner__content">
         <div class="banner__desc">
           <h1 class="banner__title">숭실대학교</h1>
           <span>D-10</span>
         </div>
       </div>
-    </div>
+    </div> -->
+    <Carousel />
     <div class="topbar">
       <span class="topbar__title">최근 수시관련 뉴스</span>
       <span class="topbar__more">더보기</span>
@@ -53,10 +56,10 @@ export default {
         @click="onClickLink(banner.link)"
       >
         <img :src="banner.cover" class="news__img" />
-        <span id="title">{{banner.title}}</span>
-        <br />
-        <span id="desc">{{banner.desc}}</span>
-        <br />
+        <div class="news__content">
+          <span id="title">{{banner.title}}</span>
+          <span id="desc">{{banner.desc + '...'}}</span>
+        </div>
       </div>
     </div>
     <br />
@@ -68,7 +71,7 @@ export default {
 
 #title {
   font-family: "NanumSquare", monospace;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 
@@ -101,6 +104,13 @@ export default {
     // max-height: 9em;
     height: 9rem;
     width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 0.5rem;
+    padding-bottom: 0.5rem;
   }
 }
 

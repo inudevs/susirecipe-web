@@ -50,10 +50,18 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+figure {
+  margin: 0.5rem;
+}
 </style>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+h1, p {
+  margin: 0;
+}
+
 .header{
   margin: 0 auto;
   width: 65%;
