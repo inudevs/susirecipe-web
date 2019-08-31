@@ -13,25 +13,25 @@
     <span class="topbar__more">더보기</span>
   </div>
   <div class="news">
-    <div class="news__box" 
+    <div class="news__box"
     @click="onClickLink(news.data.news[0].link)">
       <img :src="news.data.news[0].cover" class="news__img">
       <span id="title">{{news.data.news[0].title}}</span><br>
       <span id="desc">{{news.data.news[0].desc}}</span><br>
     </div>
-    <div class="news__box" 
+    <div class="news__box"
     @click="onClickLink(news.data.news[1].link)">
       <img :src="news.data.news[1].cover" class="news__img">
       <span id="title">{{news.data.news[1].title}}</span><br>
       <span id="desc">{{news.data.news[1].desc}}</span><br>
     </div>
-    <div class="news__box" 
+    <div class="news__box"
     @click="onClickLink(news.data.news[2].link)">
       <img :src="news.data.news[2].cover" class="news__img">
       <span id="title">{{news.data.news[2].title}}</span><br>
       <span id="desc">{{news.data.news[2].desc}}</span><br>
     </div>
-    <div class="news__box" 
+    <div class="news__box"
     @click="onClickLink(news.data.news[3].link)">
       <img :src="news.data.news[3].cover" class="news__img">
       <span id="title">{{news.data.news[3].title}}</span><br>
@@ -104,7 +104,7 @@
     font-weight: 600;
     color: rgb(153, 153, 153);
   }
-  
+
 }
 
 .banner {
@@ -140,7 +140,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { setTimeout } from 'timers';
+import { setTimeout } from 'timers'
 import axios from 'axios'
 
 export default {
@@ -150,7 +150,7 @@ export default {
       news: null
     }
   },
-  created() {
+  created () {
     axios // FIXME 서버통신
       .get('http://susirecipe.cf/service/news')
       .then(response => {
@@ -162,9 +162,9 @@ export default {
       })
   },
   methods: {
-    onClickLink(link) { 
-      const win = window.open(link);
-      win.focus();
+    onClickLink (link) {
+      const win = window.open(link)
+      win.focus()
     }
   }
 }
